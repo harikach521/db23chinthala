@@ -80,3 +80,36 @@ ${JSON.stringify(req.body)}`)
 failed`); 
     } 
 }; 
+///part 3
+// Handle Costume delete on DELETE. 
+exports.costume_delete = async function(req, res) { 
+    console.log("delete "  + req.params.id) 
+    try { 
+        result = await Costume.findByIdAndDelete( req.params.id) 
+        console.log("Removed " + result) 
+        res.send(result) 
+    } catch (err) { 
+        res.status(500) 
+        res.send(`{"error": Error deleting ${err}}`); 
+    } 
+}; 
+
+//part  4
+// Handle a show one view with id specified by query 
+exports.costume_view_one_Page = async function(req, res) { 
+    console.log("single view for id "  + req.query.id) 
+    try{ 
+        result = await Costume.findById( req.query.id) 
+        res.render('costumedetail',  
+{ title: 'Costume Detail', toShow: result }); 
+    } 
+    catch(err){ 
+        res.status(500) 
+        res.send(`{'error': '${err}'}`); 
+    } 
+}; 
+
+.costumeAttr { 
+    background-color: aquamarine; 
+    width: 120px; 
+  } 
