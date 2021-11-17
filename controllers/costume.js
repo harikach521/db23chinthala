@@ -108,8 +108,3 @@ exports.costume_view_one_Page = async function(req, res) {
         res.send(`{'error': '${err}'}`); 
     } 
 }; 
-
-.costumeAttr { 
-    background-color: aquamarine; 
-    width: 120px; 
-  } 
