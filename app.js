@@ -47,7 +47,7 @@ app.use('/users', usersRouter);
 app.use('/omlet', omletRouter);
 app.use('/addmods', addmodsRouter);
 app.use('/selector', selectorRouter);
-app.use('/bullet',bullet);
+app.use('/costumes',bullet);
 app.use('/resource',resource);
 
 // catch 404 and forward to error handler
