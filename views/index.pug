@@ -1,20 +1,30 @@
 extends layout
 
 block content
-  h1= title
-  p Hi! Dancing is fun!!
-  button(type="button", class="btn btn-success", onclick="update()") Press Me
-  br
-  br
-  div(id = "target") 
+  //h1= title
+  //p Hi! Dancing is fun!!
+  //(type="button", class="btn btn-success", onclick="update()") Press Me
+  //br
+  //br
+  //div(id = "target") 
     b Display
     br
     br
-  a(href = '/omlet') Omlet Page Link
+    a(href = '/omlet') Omlet Page Link
   
-  script.  
+  //script.  
    var client_count=0;
      function update() {
        client_count++;
        document.getElementById("target").innerHTML=`Value now ${client_count}`;
      }
+
+  if (!user) 
+   a(href="/login") Login 
+   br 
+   a(href="/register") Register 
+  if (user) 
+   p You are currently logged in as #{user.username} 
+   a(href="/costumes") Take me to costumes 
+   br 
+   a(href="/logout") Logout
