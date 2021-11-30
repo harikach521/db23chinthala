@@ -1,7 +1,9 @@
 extends layout
 
 block content
-    h1= title
+    div(class="row m-2")
+    h1(class="col-sm-10")= title
+    a(href = "costumes/create" class="btn bg-dark text-white float-right col-sm-2") Create
     - let items = results 
     table(class="table table-stripped table-bordered")
         thead(style="background-color:green;color:white")
@@ -10,7 +12,7 @@ block content
                 td Costume Type
                 td Size 
                 td Cost 
-                td Update
+                td Collection
         tbody 
             each item in items 
                 -let itemid=item._id
@@ -20,9 +22,37 @@ block content
                     td #{item.size}
                     td #{item.cost}
                     td 
-                        button.btn( class="btn-primary ml-1", onclick= `dispatch(\"/costumes/update/?id=${item._id}\")` ) Update 
+                        button.btn( class="btn-info ml-1", onclick= `dispatch(\"/costumes/update/?id=${item._id}\")` ) Update 
+                        button.btn(class="btn-danger m-1", onclick=`deleteOnid(\"/costumes/delete/?id=${item._id}\")`) Delete 
+                        button.btn(class="btn-secondary m-1", onclick=`detail(\"/costumes/detail/?id=${item._id}\")`) detail
+ 
 
                 script. 
                   function dispatch(path){ 
                     window.location.href=path 
                   } 
+
+                script. 
+                  function detail(path1) { 
+                    // Go back to the home page for the costume collection 
+                    window.location.href=path1
+                  } 
+                script. 
+                  function deleteOnid(path2) { 
+                    window.location.href=path2
+                    //console.log("starting delete") 
+                    // delete first 
+                  //fetch(actionid, { 
+                   method: 'DELETE'   
+                  //}).then((resp) => { 
+                   return resp.json(); // or resp.text() or whatever the server sends 
+                  //}).then((body) => { 
+                   alert("Delete succeded") 
+                   window.location.href=path2 
+                    // TODO handle body 
+                  //}).catch((error) => { 
+                    // TODO handle error 
+                   alert("Delete failed " + error ) 
+                  //}); 
+                 
+                 } 
